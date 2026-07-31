@@ -329,6 +329,267 @@
       line-height: 1.65;
     }
 
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 118px 24px 92px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(22, 199, 178, .17), transparent 24rem),
+        radial-gradient(circle at 92% 14%, rgba(124, 56, 255, .14), transparent 30rem),
+        linear-gradient(180deg, #f6f8ff 0%, #eef2ff 100%);
+      border-top: 1px solid rgba(49, 71, 255, .08);
+    }
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .38;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(49, 71, 255, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(49, 71, 255, .08) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, #000, transparent 72%);
+    }
+    .contact-inner {
+      position: relative;
+      width: min(1220px, 100%);
+      margin: auto;
+    }
+    .contact-heading {
+      max-width: 760px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+    .contact-heading h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.7rem, 5.4vw, 5.2rem);
+    }
+    .contact-heading p:last-child {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    .contact-grid {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      min-height: 430px;
+      border: 1px solid rgba(49, 71, 255, .11);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, .83);
+      box-shadow: 0 26px 70px rgba(35, 48, 114, .12);
+      backdrop-filter: blur(16px);
+    }
+    .map-wrap {
+      position: relative;
+      min-height: 430px;
+      background: #dfe6ff;
+    }
+    .map-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+      border: 0;
+      filter: saturate(.88) contrast(.96);
+    }
+    .map-link {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      min-height: 44px;
+      padding: 0 17px;
+      border: 1px solid rgba(7, 23, 62, .1);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 10px 28px rgba(7, 23, 62, .14);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 800;
+    }
+    .contact-card {
+      padding: clamp(32px, 4vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -.045em;
+    }
+    .contact-card > p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .contact-list {
+      margin: 0;
+      display: grid;
+      gap: 0;
+    }
+    .contact-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 15px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(7, 23, 62, .09);
+    }
+    .contact-item:first-child { border-top: 0; padding-top: 0; }
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--blue);
+      background: rgba(49, 71, 255, .08);
+      border: 1px solid rgba(49, 71, 255, .12);
+      font-size: 1.15rem;
+    }
+    .contact-item:nth-child(2) .contact-icon {
+      color: #008d7f;
+      background: rgba(22, 199, 178, .09);
+      border-color: rgba(22, 199, 178, .16);
+    }
+    .contact-item:nth-child(3) .contact-icon {
+      color: var(--violet);
+      background: rgba(124, 56, 255, .08);
+      border-color: rgba(124, 56, 255, .14);
+    }
+    .contact-item dt {
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: .84rem;
+      font-weight: 850;
+    }
+    .contact-item dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+    .contact-item a {
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--blue); }
+
+    .site-footer {
+      padding: 42px 24px 28px;
+      color: rgba(255,255,255,.72);
+      background:
+        radial-gradient(circle at 12% 110%, rgba(22, 199, 178, .22), transparent 25rem),
+        radial-gradient(circle at 88% -10%, rgba(124, 56, 255, .32), transparent 31rem),
+        #090d2b;
+    }
+    .footer-shell {
+      overflow: hidden;
+      width: min(1320px, 100%);
+      margin: auto;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 30px;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 26px 80px rgba(0,0,0,.22);
+      backdrop-filter: blur(18px);
+    }
+    .footer-main {
+      padding: clamp(34px, 5vw, 58px);
+      display: grid;
+      grid-template-columns: 1.15fr .7fr 1fr;
+      gap: clamp(38px, 6vw, 90px);
+    }
+    .footer-brand {
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -.06em;
+    }
+    .footer-intro {
+      max-width: 430px;
+      margin: 0 0 28px;
+      line-height: 1.7;
+    }
+    .footer-cta {
+      width: fit-content;
+      min-height: 46px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background: linear-gradient(115deg, rgba(49,71,255,.75), rgba(124,56,255,.72));
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+    .footer-title {
+      margin: 4px 0 20px;
+      color: #cafff7;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .footer-links {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.72);
+      text-decoration: none;
+      transition: color .2s ease, transform .2s ease;
+    }
+    .footer-links a:hover {
+      color: #fff;
+      transform: translateX(3px);
+    }
+    .footer-about {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 26px;
+    }
+    .footer-about span {
+      color: rgba(255,255,255,.67);
+      line-height: 1.45;
+    }
+    .footer-about small {
+      display: block;
+      margin-top: 4px;
+      color: rgba(183,231,106,.74);
+      font-size: .67rem;
+      font-weight: 850;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .footer-bottom {
+      padding: 20px clamp(28px, 5vw, 58px);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: .84rem;
+    }
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .footer-legal span { color: rgba(255,255,255,.46); }
+
     @media (max-width: 900px) {
       .site-header { padding: 10px 12px; }
       .nav-shell { min-height: 68px; padding: 8px 9px 8px 14px; grid-template-columns: 1fr auto; }
@@ -340,6 +601,11 @@
       .nav-actions .button { min-height: 44px; padding-inline: 17px; font-size: .86rem; }
       .hero { padding-top: 135px; }
       .journey-inner { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .map-wrap,
+      .map-wrap iframe { min-height: 360px; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+      .footer-about-wrap { grid-column: 1 / -1; }
     }
     @media (max-width: 520px) {
       .brand-name { display: none; }
@@ -350,6 +616,18 @@
       .text-link { justify-content: center; }
       .journey { padding: 86px 18px; }
       .journey-card { border-radius: 25px; }
+      .contact { padding: 82px 16px 70px; }
+      .contact-heading { margin-bottom: 34px; }
+      .contact-grid { border-radius: 24px; }
+      .map-wrap,
+      .map-wrap iframe { min-height: 310px; }
+      .contact-card { padding: 30px 24px; }
+      .site-footer { padding: 24px 14px 18px; }
+      .footer-shell { border-radius: 23px; }
+      .footer-main { grid-template-columns: 1fr; }
+      .footer-about-wrap { grid-column: auto; }
+      .footer-about { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -409,7 +687,101 @@
         </aside>
       </div>
     </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <div class="contact-heading">
+          <p class="section-kicker">Contact · Ticker Bell</p>
+          <h2>Let’s start a conversation.</h2>
+          <p>Our doors are open for collaborations, partnerships, and conversations. Reach out online or visit the Ticker Bell office in Budapest.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="map-wrap">
+            <iframe
+              title="Map showing the Ticker Bell office at Népfürdő utca 22B in Budapest"
+              src="https://www.google.com/maps?q=N%C3%A9pf%C3%BCrd%C5%91%20u.%2022B%2C%201138%20Budapest%2C%20Hungary&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=N%C3%A9pf%C3%BCrd%C5%91%20u.%2022B%2C%201138%20Budapest%2C%20Hungary" target="_blank" rel="noopener">
+              <span aria-hidden="true">↗</span> Open in Google Maps
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <h3>Visit us</h3>
+            <p>Find us in Budapest’s XIII district, close to the Danube.</p>
+            <dl class="contact-list">
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">⌖</span>
+                <div>
+                  <dt>Address</dt>
+                  <dd>Népfürdő u. 22B<br>1138 Budapest, Hungary</dd>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">✉</span>
+                <div>
+                  <dt>Email</dt>
+                  <dd><a href="mailto:info@tickerbell.biz">info@tickerbell.biz</a></dd>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">◷</span>
+                <div>
+                  <dt>Office hours</dt>
+                  <dd>Monday–Friday, 9:00–17:00<br>CET / CEST</dd>
+                </div>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div class="footer-main">
+        <div>
+          <p class="footer-brand">TICKER BELL<sup>®</sup></p>
+          <p class="footer-intro">A documented journey from learning software engineering to building and deploying useful products.</p>
+          <a class="footer-cta" href="https://github.com/tickerbell-biz/Become-SWE" target="_blank" rel="noopener">Follow the learning journal <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <nav aria-label="Footer navigation">
+          <p class="footer-title">Navigation</p>
+          <ul class="footer-links">
+            <li><a href="#top">Overview</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#journal">Lessons</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://tickerbell.biz" target="_blank" rel="noopener">Ticker Bell website ↗</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-about-wrap">
+          <p class="footer-title">About</p>
+          <div class="footer-about" aria-label="Planned About pages">
+            <span>Vision Statement<small>Page planned</small></span>
+            <span>Mission Statement<small>Page planned</small></span>
+            <span>Core Values<small>Page planned</small></span>
+            <span>Quality Policy<small>Page planned</small></span>
+            <span>Standards &amp; Compliance<small>Page planned</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Ticker Bell Kft. All rights reserved.</span>
+        <div class="footer-legal" aria-label="Legal pages">
+          <span>Privacy Policy · Page planned</span>
+          <span>Terms &amp; Conditions · Page planned</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const header = document.getElementById("site-header");
