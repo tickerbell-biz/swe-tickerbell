@@ -1,108 +1,421 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ticker Bell Software Engineering — learning, building, and shipping well-crafted software.">
-  <title>Ticker Bell SWE | Software Engineering</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The documented Ticker Bell journey to become independent software engineers and turn ideas into deployed products.">
+  <meta name="theme-color" content="#090d2b">
+  <link rel="icon" type="image/webp" href="data:image/webp;base64,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">
+  <title>Become SWE | Ticker Bell</title>
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #080b14;
-      --surface: #111728;
-      --text: #f7f8fc;
-      --muted: #aeb7ca;
-      --accent: #8b5cf6;
-      --accent-2: #22d3ee;
+      --ink: #07173e;
+      --muted: #67708b;
+      --blue: #3147ff;
+      --violet: #7c38ff;
+      --teal: #16c7b2;
+      --lime: #b7e76a;
+      --white: #fff;
+      --line: rgba(255, 255, 255, .13);
+      --shadow: 0 22px 70px rgba(4, 8, 38, .24);
     }
+
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
+      color: var(--white);
+      background: #090d2b;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, .22), transparent 32rem),
-        radial-gradient(circle at 85% 80%, rgba(34, 211, 238, .14), transparent 28rem),
-        var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
-    nav, main, footer { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
-    nav {
-      height: 88px;
+    a { color: inherit; }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 14px 24px;
+      transition: padding .35s ease;
+    }
+    .nav-shell {
+      width: min(1440px, 100%);
+      min-height: 82px;
+      margin: 0 auto;
+      padding: 10px 14px 10px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 28px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .95);
+      border: 1px solid rgba(255, 255, 255, .72);
+      border-radius: 999px;
+      box-shadow: 0 14px 40px rgba(7, 15, 58, .18);
+      backdrop-filter: blur(18px);
+      transition: width .35s ease, min-height .35s ease, border-radius .35s ease, box-shadow .35s ease;
+    }
+    .site-header.is-scrolled { padding: 0; }
+    .site-header.is-scrolled .nav-shell {
+      width: 100%;
+      min-height: 76px;
+      padding-inline: max(28px, calc((100vw - 1820px) / 2));
+      border-radius: 0;
+      border-color: rgba(7, 23, 62, .08);
+      box-shadow: 0 6px 20px rgba(7, 15, 58, .1);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      width: fit-content;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.22rem;
+      font-weight: 850;
+      letter-spacing: -.045em;
+    }
+    .brand-mark {
+      position: relative;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(7, 23, 62, .06);
+    }
+    .brand-mark img {
+      position: absolute;
+      width: 87px;
+      height: 87px;
+      max-width: none;
+      left: -22px;
+      top: -15px;
+    }
+    .nav-links {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: clamp(22px, 3vw, 50px);
     }
-    .brand { font-weight: 800; letter-spacing: -.03em; }
-    .brand span { color: var(--accent-2); }
-    nav a, .button {
-      color: var(--text);
+    .nav-links a {
+      color: #727991;
       text-decoration: none;
+      font-size: .98rem;
+      font-weight: 650;
+      transition: color .2s ease;
     }
-    nav a { color: var(--muted); }
-    main {
-      min-height: calc(100vh - 158px);
-      display: grid;
-      align-content: center;
-      padding: 72px 0 110px;
-    }
-    .eyebrow {
-      color: var(--accent-2);
-      font-size: .82rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    h1 {
-      max-width: 900px;
-      margin: 18px 0 24px;
-      font-size: clamp(3.4rem, 9vw, 7.5rem);
-      line-height: .93;
-      letter-spacing: -.065em;
-    }
-    h1 em {
-      font-style: normal;
-      background: linear-gradient(100deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .intro {
-      max-width: 680px;
-      margin: 0 0 36px;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
-      line-height: 1.65;
-    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--blue); }
+    .nav-actions { display: flex; justify-content: flex-end; }
+
     .button {
       display: inline-flex;
-      width: fit-content;
-      padding: 14px 20px;
-      border: 1px solid rgba(255,255,255,.18);
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      padding: 0 23px;
+      border: 0;
       border-radius: 999px;
-      background: rgba(255,255,255,.07);
-      font-weight: 750;
-      transition: transform .2s ease, background .2s ease;
+      color: #fff;
+      background: linear-gradient(115deg, var(--blue), #5a3dff);
+      box-shadow: 0 12px 30px rgba(49, 71, 255, .3);
+      text-decoration: none;
+      font-size: .98rem;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .button:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); }
-    footer {
-      min-height: 70px;
+    .button:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(49, 71, 255, .38); }
+    .button:focus-visible,
+    a:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+    .button-light {
+      min-height: 58px;
+      padding-inline: 29px;
+      color: var(--ink);
+      background: var(--white);
+      box-shadow: 0 18px 45px rgba(4, 8, 38, .26);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 100svh;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 160px 24px 96px;
+      background:
+        radial-gradient(circle at 12% 25%, rgba(22, 199, 178, .62), transparent 28rem),
+        radial-gradient(circle at 86% 30%, rgba(123, 56, 255, .78), transparent 34rem),
+        radial-gradient(circle at 52% 105%, rgba(49, 71, 255, .95), transparent 36rem),
+        linear-gradient(135deg, #080d34 0%, #11105f 48%, #250b5e 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      opacity: .47;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, transparent 6%, #000 35%, #000 78%, transparent 100%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: min(720px, 78vw);
+      aspect-ratio: 1;
+      right: -24%;
+      bottom: -56%;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 90px rgba(255,255,255,.025),
+        0 0 0 180px rgba(255,255,255,.018);
+    }
+    .hero-inner {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .eyebrow {
+      width: fit-content;
+      margin: 0 auto 25px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255, 255, 255, .23);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #cafff7;
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      backdrop-filter: blur(9px);
+    }
+    h1 {
+      max-width: 1040px;
+      margin: 0 auto;
+      font-size: clamp(3.6rem, 8.4vw, 8.8rem);
+      line-height: .88;
+      letter-spacing: -.075em;
+      text-wrap: balance;
+    }
+    h1 span {
+      color: transparent;
+      background: linear-gradient(100deg, #fff 15%, #c8fff8 48%, #d7ccff 82%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    .hero-intro {
+      max-width: 750px;
+      margin: 30px auto 0;
+      color: rgba(255, 255, 255, .77);
+      font-size: clamp(1.05rem, 2vw, 1.34rem);
+      line-height: 1.62;
+      text-wrap: balance;
+    }
+    .builder-line {
+      margin: 25px 0 34px;
+      color: var(--lime);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+      font-weight: 850;
+      letter-spacing: .01em;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 58px;
+      padding-inline: 20px;
+      color: rgba(255,255,255,.84);
+      text-decoration: none;
+      font-weight: 750;
+    }
+    .text-link:hover { color: #fff; }
+
+    .journey {
+      position: relative;
+      padding: 118px 24px;
+      color: var(--ink);
+      background: #f6f8ff;
+    }
+    .journey-inner {
+      width: min(1120px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: center;
+    }
+    .section-kicker {
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 15px 0 22px;
+      font-size: clamp(2.5rem, 5.8vw, 5.5rem);
+      line-height: .98;
+      letter-spacing: -.06em;
+      text-wrap: balance;
+    }
+    .journey-copy > p {
+      max-width: 590px;
+      margin: 0;
       color: var(--muted);
-      font-size: .9rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+    .journey-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(34px, 5vw, 62px);
+      border-radius: 34px;
+      color: #fff;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.1), transparent 50%),
+        linear-gradient(135deg, #2d42ff, #7838ff 72%);
+      box-shadow: var(--shadow);
+    }
+    .journey-card::after {
+      content: "</>";
+      position: absolute;
+      right: -8px;
+      bottom: -30px;
+      color: rgba(255,255,255,.08);
+      font-size: 10rem;
+      font-weight: 900;
+      letter-spacing: -.12em;
+    }
+    .journey-number {
+      color: #cafff7;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .journey-card h3 {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 19px 0 25px;
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+    }
+    .disclaimer {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.23);
+      color: rgba(255,255,255,.76);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .site-header { padding: 10px 12px; }
+      .nav-shell { min-height: 68px; padding: 8px 9px 8px 14px; grid-template-columns: 1fr auto; }
+      .site-header.is-scrolled .nav-shell { min-height: 66px; padding-inline: 16px; }
+      .nav-links { display: none; }
+      .brand { font-size: 1.05rem; }
+      .brand-mark { width: 40px; height: 40px; flex-basis: 40px; }
+      .brand-mark img { width: 79px; height: 79px; left: -20px; top: -14px; }
+      .nav-actions .button { min-height: 44px; padding-inline: 17px; font-size: .86rem; }
+      .hero { padding-top: 135px; }
+      .journey-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .brand-name { display: none; }
+      .hero { padding-inline: 18px; }
+      h1 { font-size: clamp(3.3rem, 16vw, 5.1rem); }
+      .hero-intro { font-size: 1rem; }
+      .hero-actions { display: grid; }
+      .text-link { justify-content: center; }
+      .journey { padding: 86px 18px; }
+      .journey-card { border-radius: 25px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="brand">Ticker Bell <span>SWE</span></div>
-    <a href="https://tickerbell.biz">Ticker Bell ↗</a>
-  </nav>
+  <header class="site-header" id="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Become SWE home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="data:image/webp;base64,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" alt="">
+        </span>
+        <span class="brand-name">Become SWE</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#top">Overview</a>
+        <a href="#journey">Journey</a>
+        <a href="#journal">Lessons</a>
+        <a href="https://tickerbell.biz" target="_blank" rel="noopener">tickerbell.biz ↗</a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="button" href="#journal">Get the Journal <span aria-hidden="true">→</span></a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <div class="eyebrow">Software Engineering</div>
-    <h1>Learn deeply.<br><em>Build boldly.</em></h1>
-    <p class="intro">A practical software-engineering journey by Ticker Bell—turning ideas into reliable, thoughtfully crafted digital products.</p>
-    <a class="button" href="mailto:admin@mehr.gallery">Coming soon — contact us</a>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="eyebrow">A Ticker Bell learning journal</p>
+        <h1><span>Become a Software Engineer</span></h1>
+        <p class="hero-intro">This is the journal of becoming an independent software engineer—from the first idea to a product people can actually use.</p>
+        <p class="builder-line">Builders are shaping the world.</p>
+        <div class="hero-actions" id="journal">
+          <a class="button button-light" href="#journey">Get the journal, step by step <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="https://github.com/tickerbell-biz/Become-SWE" target="_blank" rel="noopener">Explore the learning repository ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="journey-inner">
+        <div class="journey-copy">
+          <p class="section-kicker">The real work, documented</p>
+          <h2>Our journey to become builders at Ticker Bell.</h2>
+          <p>We learn by solving real problems, documenting what worked and what did not, then turning each lesson into the next usable release.</p>
+        </div>
+
+        <aside class="journey-card" aria-label="About this journal">
+          <p class="journey-number">Journal note · 001</p>
+          <h3>From learning to building—and from building to deploying.</h3>
+          <p class="disclaimer"><strong>Disclaimer:</strong> This is the documented journey of the Ticker Bell team toward becoming independent software engineers. It shares our experience and practical suggestions for anyone who wants to follow a similar path; it is not a promise of a specific outcome.</p>
+        </aside>
+      </div>
+    </section>
   </main>
-  <footer>© 2026 Ticker Bell Kft. Budapest.</footer>
+
+  <script>
+    const header = document.getElementById("site-header");
+    const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 28);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  </script>
 </body>
 </html>
