@@ -1,0 +1,48 @@
+name: Fix lesson card stacking
+
+on:
+  push:
+    paths:
+      - .github/workflows/fix-lesson-stack.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Keep Lesson 1 header visible
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+          html = path.read_text(encoding="utf-8")
+
+          old_stack = ".lesson-stack { display: grid; gap: 34px; }"
+          new_stack = ".lesson-stack { display: grid; grid-template-rows: repeat(2, max-content); align-items: start; gap: 34px; padding-bottom: 90px; }"
+          if old_stack not in html:
+              raise SystemExit("Expected lesson-stack rule was not found")
+          html = html.replace(old_stack, new_stack, 1)
+
+          old_card_end = "      transform-origin: top center;\n    }\n    .lesson-card:nth-child(2) { top: 184px; }"
+          new_card_end = "      transform-origin: top center;\n      align-self: start;\n    }\n    .lesson-card:nth-child(1) { z-index: 1; }\n    .lesson-card:nth-child(2) { top: 194px; z-index: 2; }"
+          if old_card_end not in html:
+              raise SystemExit("Expected lesson-card stacking rules were not found")
+          html = html.replace(old_card_end, new_card_end, 1)
+
+          path.write_text(html, encoding="utf-8")
+          PY
+
+      - name: Commit the fix and remove this temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-lesson-stack.yml
+          git add index.html
+          git commit -m "Keep Lesson 1 header visible in card stack"
+          git push
