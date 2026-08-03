@@ -1,0 +1,38 @@
+name: Fix sticky lesson stack
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-sticky-lesson-stack.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update lesson stack CSS
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = '.lesson-stack { display: grid; gap: 34px; }'
+          new = '.lesson-stack { display: block; padding-bottom: 110px; }\n    .lesson-card + .lesson-card { margin-top: 34px; }'
+          if old not in s:
+              raise SystemExit('Target lesson-stack rule not found')
+          s = s.replace(old, new, 1)
+          s = s.replace('.lesson-card:nth-child(2) { top: 184px; }', '.lesson-card:nth-child(2) { top: 194px; z-index: 2; }', 1)
+          s = s.replace('box-shadow: 0 34px 90px rgba(28,24,85,.25);\n      transform-origin: top center;', 'box-shadow: 0 34px 90px rgba(28,24,85,.25);\n      transform-origin: top center;\n      z-index: 1;', 1)
+          p.write_text(s)
+          PY
+      - name: Remove one-time workflow and commit
+        run: |
+          rm .github/workflows/fix-sticky-lesson-stack.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-sticky-lesson-stack.yml
+          git commit -m "Keep earlier lesson headers visible while stacking"
+          git push
