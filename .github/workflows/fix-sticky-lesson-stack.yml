@@ -13,51 +13,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update lesson stack CSS
+      - name: Keep Lesson 1 sticky for the full stack
         run: |
           python - <<'PY'
           from pathlib import Path
+
           p = Path('index.html')
           s = p.read_text()
-          old = '.lesson-stack { display: grid; gap: 34px; }'
-          new = '''.lesson-stack {
+
+          old_stack = '.lesson-stack { display: grid; grid-template-rows: repeat(2, max-content); align-items: start; gap: 34px; padding-bottom: 90px; }'
+          new_stack = '''.lesson-stack {
       position: relative;
       display: block;
       padding-bottom: 120px;
     }
-    .lesson-stack::before {
-      content: "LESSON 01     GitHub Pages and a custom subdomain";
-      position: sticky;
-      z-index: 4;
-      top: 110px;
-      height: 84px;
-      margin-bottom: -84px;
-      padding: 0 clamp(24px,4vw,52px);
-      display: flex;
-      align-items: center;
-      border-radius: 42px 42px 0 0;
-      color: #fff;
-      background: linear-gradient(135deg,#ff3158,#ff6a2a 48%,#f9b61b);
-      box-shadow: 0 18px 45px rgba(28,24,85,.18);
-      font-size: clamp(.82rem,1.4vw,1.02rem);
-      font-weight: 900;
-      letter-spacing: .01em;
-      white-space: pre;
-    }
     .lesson-card + .lesson-card { margin-top: 34px; }'''
-          if old not in s:
-              raise SystemExit('Target lesson-stack rule not found')
-          s = s.replace(old, new, 1)
-          s = s.replace('.lesson-card:nth-child(2) { top: 184px; }', '.lesson-card:nth-child(2) { top: 194px; z-index: 5; }', 1)
+
+          if old_stack not in s:
+              raise SystemExit('Current lesson-stack rule not found')
+
+          s = s.replace(old_stack, new_stack, 1)
+          s = s.replace('      align-self: start;\n', '', 1)
+          s = s.replace('.lesson-card:nth-child(1) { z-index: 1; }', '.lesson-card:nth-child(1) { z-index: 1; }', 1)
+          s = s.replace('.lesson-card:nth-child(2) { top: 194px; z-index: 2; }', '.lesson-card:nth-child(2) { top: 194px; z-index: 2; }', 1)
+
           p.write_text(s)
           PY
-      - name: Remove one-time workflow and commit
+
+      - name: Remove workflow and commit final change
         run: |
           rm .github/workflows/fix-sticky-lesson-stack.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html .github/workflows/fix-sticky-lesson-stack.yml
-          git commit -m "Keep Lesson 1 header visible throughout Lesson 2"
+          git commit -m "Keep Lesson 1 header visible through Lesson 2"
           git push
-
-# Trigger the one-time correction after the workflow exists on main.
