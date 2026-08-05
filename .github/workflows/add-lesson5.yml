@@ -1,0 +1,53 @@
+name: Add Lesson 5 to landing page
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-lesson5.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-landing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Lesson 5 card and links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          if 'lesson-five' in s:
+              raise SystemExit('Lesson 5 is already present.')
+          s = s.replace(
+              '.lesson-card:nth-child(4){top:calc(var(--stack-top) + var(--fold-reveal) + var(--fold-reveal) + var(--fold-reveal));z-index:4}',
+              '.lesson-card:nth-child(4){top:calc(var(--stack-top) + var(--fold-reveal) + var(--fold-reveal) + var(--fold-reveal));z-index:4}.lesson-card:nth-child(5){top:calc(var(--stack-top) + var(--fold-reveal) + var(--fold-reveal) + var(--fold-reveal) + var(--fold-reveal));z-index:5}'
+          )
+          s = s.replace(
+              '.lesson-four{background:radial-gradient(circle at 86% 15%,rgba(255,225,109,.65),transparent 19rem),linear-gradient(135deg,#8b1f67,#d52a65 48%,#f28a31)}',
+              '.lesson-four{background:radial-gradient(circle at 86% 15%,rgba(255,225,109,.65),transparent 19rem),linear-gradient(135deg,#8b1f67,#d52a65 48%,#f28a31)}.lesson-five{background:radial-gradient(circle at 84% 14%,rgba(199,244,120,.52),transparent 19rem),linear-gradient(135deg,#07173e,#3348ff 55%,#118c82)}'
+          )
+          s = s.replace(
+              '.lesson-four:before{opacity:.2;background-image:radial-gradient(circle at center,rgba(255,255,255,.9) 0 2px,transparent 2px);background-size:30px 30px}',
+              '.lesson-four:before{opacity:.2;background-image:radial-gradient(circle at center,rgba(255,255,255,.9) 0 2px,transparent 2px);background-size:30px 30px}.lesson-five:before{opacity:.18;background-image:linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px);background-size:32px 32px}'
+          )
+          marker = '</article></div></div></section>\n<section class="contact"'
+          card = '''</article><article class="lesson-card lesson-five"><header class="lesson-fold-header"><span class="lesson-fold-number">Lesson 05</span><span class="lesson-fold-title">The product development roadmap</span></header><div class="lesson-copy"><h3>The product roadmap is not the learning order.</h3><p class="lesson-description">See the complete 30-step process for developing software from a problem to a maintained production system, and understand why project-based learning follows a different sequence.</p><div class="lesson-actions"><a class="button read" href="https://swe.tickerbell.biz/lesson5/">Read Lesson 5 <span aria-hidden="true">→</span></a><a class="button lead" href="https://swe.tickerbell.biz/lesson5/Lesson-05-Product-Development-Roadmap.pdf">Download the PDF</a></div></div><aside class="lesson-meta"><p>Inside this lesson</p><ul><li>Product development versus learning</li><li>A complete 30-step delivery roadmap</li><li>Iterative development and feedback loops</li><li>How future lessons map to product stages</li></ul></aside></article></div></div></section>\n<section class="contact"'''
+          if marker not in s:
+              raise SystemExit('Could not locate the lesson-section closing marker.')
+          s = s.replace(marker, card, 1)
+          s = s.replace(
+              '<li><a href="https://swe.tickerbell.biz/lesson4/">Lesson 4</a></li></ul>',
+              '<li><a href="https://swe.tickerbell.biz/lesson4/">Lesson 4</a></li><li><a href="https://swe.tickerbell.biz/lesson5/">Lesson 5</a></li></ul>'
+          )
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit landing-page update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add Lesson 5 to landing page"
+          git push
